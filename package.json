@@ -1,0 +1,21 @@
+{
+  "name": "nexabot",
+  "version": "0.0.1",
+  "description": "Discord bot for OpenNexa",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "bot",
+    "nexa",
+    "opennexa",
+    "opennexabot",
+    "Opensource"
+  ],
+  "author": "OpenNexa",
+  "license": "GPL-3.0",
+  "dependencies": {
+    "discord.js": "^14.8.0"
+  }
+}
