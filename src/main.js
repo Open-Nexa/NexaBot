@@ -4,7 +4,7 @@ dotenv.config();
 const { GatewayIntentBits } = require('discord.js');
 const Bot = require('./structure/NexaBot');
 
-const bot = new Bot({ intents: [GatewayIntentBits.Guilds] });
+const bot = new Bot({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMembers] });
 
 bot.init(process.env.TOKEN);
 
