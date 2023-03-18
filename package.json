@@ -17,11 +17,13 @@
   "author": "OpenNexa",
   "license": "GPL-3.0",
   "dependencies": {
+    "@keyv/sqlite": "^3.6.4",
     "bufferutil": "^4.0.7",
     "discord.js": "^14.8.0",
     "dotenv": "^16.0.3",
     "erlpack": "github:discord/erlpack",
     "express": "^4.18.2",
+    "keyv": "^4.5.2",
     "utf-8-validate": "^6.0.3",
     "zlib-sync": "^0.1.8"
   },
