@@ -1,6 +1,28 @@
-const { SlashCommandBuilder } = require('discord.js');
-const { roles } = require('../config.json');
+const { ActionRowBuilder, ButtonBuilder, ButtonStyle, SlashCommandBuilder } = require('discord.js');
+
 const { EmbedBuilder } = require('discord.js');
+
+
+const man = new ButtonBuilder()
+    .setCustomId('man')
+    .setLabel('Man')
+    .setStyle(ButtonStyle.Primary);
+const pc = new ButtonBuilder()
+    .setCustomId('pc')
+    .setLabel('PC')
+    .setStyle(ButtonStyle.Primary);
+const mobile = new ButtonBuilder()
+    .setCustomId('mobile')
+    .setLabel('Mobile')
+    .setStyle(ButtonStyle.Danger);
+
+const gender = new ActionRowBuilder()
+    .addComponents(man);
+
+const device = new ActionRowBuilder()
+    .addComponents(pc, mobile);
+
+
 
 const verfyembed = new EmbedBuilder()
     .setTitle('Verify')
@@ -19,21 +41,54 @@ const partnerembed = new EmbedBuilder()
     .setColor('1E4B9C')
     .setFooter({ text: 'OPEN NEXA' })
     .setImage('https://cdn.discordapp.com/attachments/915520195253129246/1106896897827934208/partnership.png');
+const genderembed = new EmbedBuilder()
+    .setTitle('ROLE GENDER')
+    .setDescription('What is your gender? | If you want Woman role, please verify')
+    .setColor('1E4B9C')
+    .setFooter({ text: 'OPEN NEXA' })
+const deviceembed = new EmbedBuilder()
+    .setTitle('ROLE DEVICE')
+    .setDescription('Select what device you use')
+    .setColor('1E4B9C')
+    .setFooter({ text: 'OPEN NEXA' })
 
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('point')
         .setDescription('Add roles point')
         .setDefaultMemberPermissions(268435456)
-        .addRoleOption(option => option.setName('role').setDescription('Select a role')),
+        .addStringOption(option =>
+            option.setName('type')
+                .setDescription('Select type')
+                .setRequired(true)
+                .addChoices(
+                    { name: 'Verify', value: 'verify' },
+                    { name: 'PartnershipInfo', value: 'partner' },
+                    { name: 'GenderRole', value: 'gender' },
+                    { name: 'DeviceRole', value: 'device' },
+                )),
+
+
     async execute(interaction) {
-        // if option = member role
-        if (interaction.options.getRole('role').id == roles.member) {
-            // send verify embed
-            await interaction.reply({ embeds: [verfyembed] });
-        } else if (interaction.options.getRole('role').id == roles.partner) {
-            // send partner embed
-            await interaction.reply({ embeds: [partnerembed] });
+        const type = interaction.options.getString('type');
+
+        switch (type) {
+            case 'verify':
+                await interaction.reply({ embeds: [verfyembed] })
+                break;
+            case 'partner':
+                await interaction.reply({ embeds: [partnerembed] })
+                break;
+            case 'gender':
+                await interaction.reply({ embeds: [genderembed], components: [gender] })
+                break;
+            case 'device':
+                await interaction.reply({ embeds: [deviceembed], components: [device] })
+                break;
+            default:
+                await interaction.reply({ content: 'Please select type', ephemeral: true })
+                break;
+
         }
-    },
-};
+    }
+}
