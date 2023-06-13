@@ -2,7 +2,7 @@ const { Collection } = require('discord.js');
 const fs = require('node:fs');
 const path = require('node:path');
 const { REST, Routes } = require('discord.js');
-const { guildId, clientId } = require('../config.json');
+const { clientId } = require('../config.json');
 const rest = new REST({ version: '10' }).setToken(process.env.TOKEN);
 
 module.exports = class CmdLoader {
@@ -35,7 +35,7 @@ module.exports = class CmdLoader {
         try {
             console.log(`[INFO] Registering ${name} command`);
             await rest.put(
-                Routes.applicationGuildCommands(clientId, guildId),
+                Routes.applicationGuildCommands(clientId),
                 { body: command },
             );
             console.log(`[INFO] Registered ${name} command`);
