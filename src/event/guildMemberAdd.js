@@ -1,7 +1,7 @@
 const { Events, EmbedBuilder } = require('discord.js');
 module.exports = {
     name: Events.GuildMemberAdd,
-    async execute(client, member) {
+    async execute(member) {
         const JoinEmbed = new EmbedBuilder()
             .setDescription(`Welcome to OpenNexa <@${member.id}>!`)
             .setColor('1E4B9C')
