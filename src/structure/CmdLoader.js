@@ -2,7 +2,7 @@ const { Collection } = require('discord.js');
 const fs = require('node:fs');
 const path = require('node:path');
 const { REST, Routes } = require('discord.js');
-const {guildId, clientId} = require('../config.json');
+const { guildId, clientId } = require('../config.json');
 const rest = new REST({ version: '10' }).setToken(process.env.TOKEN);
 
 module.exports = class CmdLoader {
@@ -25,6 +25,7 @@ module.exports = class CmdLoader {
             else {
                 console.log(`[WARNING] The command at ${filePath} is missing a required "data" or "execute" property.`);
             }
+            console.log(`[INFO] Loaded event ${file}`);
             commands.push(command.data.toJSON());
             this.register(commands, command.data.name);
         }
