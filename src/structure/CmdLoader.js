@@ -35,7 +35,7 @@ module.exports = class CmdLoader {
         try {
             console.log(`[INFO] Registering ${name} command`);
             await rest.put(
-                Routes.applicationGuildCommands(clientId),
+                Routes.applicationCommands(clientId),
                 { body: command },
             );
             console.log(`[INFO] Registered ${name} command`);

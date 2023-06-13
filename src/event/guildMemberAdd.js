@@ -3,7 +3,7 @@ module.exports = {
     name: Events.GuildMemberAdd,
     async execute(member) {
         const JoinEmbed = new EmbedBuilder()
-            .setDescription(`Welcome to OpenNexa <@${member.id}>!`)
+            .setDescription(`Welcome to OpenNexa <@${member.id}>! pls run command /verify to unlock all channel and don't forget to read <#901041846900359249>`)
             .setColor('1E4B9C')
             .setTimestamp()
             .setFooter({ text: 'OpenNexa Auto Welcome' });

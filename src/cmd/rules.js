@@ -5,13 +5,13 @@ const embed = new EmbedBuilder()
     .setTitle('Rules')
     .setDescription('PAY ATTENTION TO THE RULES BELOW')
     .setColor('1E4B9C')
-    
+
     .setImage('https://cdn.discordapp.com/attachments/901042319652962344/1085570363406176307/Banner_Rules.png');
 
 
 const embed2 = new EmbedBuilder()
     .setColor('1E4B9C')
-    .setFooter({ text: 'OPEN NEXA'})
+    .setFooter({ text: 'OPEN NEXA' })
     .setDescription(`
 1. No NSFW (Image, Video, Link)
 1.a This means no content that is sexually explicit, graphically violent, or otherwise inappropriate for the workplace or public spaces.
@@ -57,14 +57,15 @@ const embed2 = new EmbedBuilder()
 9.a Enjoy your stay in the server.
     `)
 
-    
+
 
 module.exports = {
-	data: new SlashCommandBuilder()
-		.setName('rules')
-		.setDescription('show rules this server'),
-	async execute(interaction) {
-		
+    data: new SlashCommandBuilder()
+        .setName('rules')
+        .setDefaultMemberPermissions(268435456)
+        .setDescription('show rules this server'),
+    async execute(interaction) {
+
         await interaction.reply({ embeds: [embed, embed2] });
-	},
+    },
 };

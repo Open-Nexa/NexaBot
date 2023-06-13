@@ -26,14 +26,6 @@ class NexaBot extends Client {
             await this.Eventloader.load();
             await this.WebMaster.init();
             console.log(`Ready! Logged in as ${this.user.tag}`);
-            this.guilds.cache.each(guild => {
-                guild.invites.fetch().then(guildInvites => {
-                    guildInvites.each(guildInvite => {
-                        console.log(guildInvite.code)
-                        this.invites[guildInvite.code] = guildInvite.uses
-                    })
-                })
-            })
         })
     }
 }

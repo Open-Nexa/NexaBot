@@ -1,4 +1,4 @@
-const { ActionRowBuilder, ButtonBuilder, ButtonStyle, SlashCommandBuilder } = require('discord.js');
+const { ActionRowBuilder, ButtonBuilder, ButtonStyle, SlashCommandBuilder, StringSelectMenuBuilder, StringSelectMenuOptionBuilder } = require('discord.js');
 
 const { EmbedBuilder } = require('discord.js');
 
@@ -22,7 +22,26 @@ const gender = new ActionRowBuilder()
 const device = new ActionRowBuilder()
     .addComponents(pc, mobile);
 
+const select = new StringSelectMenuBuilder()
+    .setCustomId('roleremove')
+    .setPlaceholder('Select role to remove')
+    .addOptions(
+        new StringSelectMenuOptionBuilder()
+            .setLabel('Man')
+            .setDescription('Remove Role gender Man.')
+            .setValue('remoman'),
+        new StringSelectMenuOptionBuilder()
+            .setLabel('PC')
+            .setDescription('Remove Role device PC.')
+            .setValue('remopc'),
+        new StringSelectMenuOptionBuilder()
+            .setLabel('Mobile')
+            .setDescription('Remove Role device Mobile.')
+            .setValue('remomobile'),
+    );
 
+const selectrole = new ActionRowBuilder()
+    .addComponents(select);
 
 const verfyembed = new EmbedBuilder()
     .setTitle('Verify')
@@ -30,6 +49,12 @@ const verfyembed = new EmbedBuilder()
     .setColor('1E4B9C')
     .setFooter({ text: 'OPEN NEXA' })
     .setImage('https://cdn.discordapp.com/attachments/901042319652962344/1086212441672798288/verify.png');
+
+const removeembed = new EmbedBuilder()
+    .setTitle('Remove Role')
+    .setDescription('Select role to remove')
+    .setColor('1E4B9C')
+    .setFooter({ text: 'OPEN NEXA' })
 const partnerembed = new EmbedBuilder()
     .setTitle('Partnership Info')
     .setDescription(`
@@ -66,6 +91,7 @@ module.exports = {
                     { name: 'PartnershipInfo', value: 'partner' },
                     { name: 'GenderRole', value: 'gender' },
                     { name: 'DeviceRole', value: 'device' },
+                    { name: 'RemoveRole', value: 'remove' },
                 )),
 
 
@@ -84,6 +110,9 @@ module.exports = {
                 break;
             case 'device':
                 await interaction.reply({ embeds: [deviceembed], components: [device] })
+                break;
+            case 'remove':
+                await interaction.reply({ embeds: [removeembed], components: [selectrole] })
                 break;
             default:
                 await interaction.reply({ content: 'Please select type', ephemeral: true })
