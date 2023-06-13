@@ -11,4 +11,4 @@ module.exports = {
         if (!channel) return;
         await channel.send({ embeds: [JoinEmbed] });
     }
-};
+}
