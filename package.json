@@ -1,6 +1,6 @@
 {
   "name": "nexabot",
-  "version": "0.0.1",
+  "version": "0.2.0",
   "description": "Discord bot for OpenNexa",
   "main": "index.js",
   "scripts": {
